@@ -19,9 +19,11 @@ def thread_input(load_url):
         for num in range(2998,3002):#コメント読み込む
             element = soup.find(id="comment_" + str(num))    # その中のliタグの文字列を表示
             
-            print(element.text)#日付
+            text = element.get_text(strip=True)# テキストを抽出
+            extracted_text = text.split('：')[2]
+            print(extracted_text)#日付
                 
-            next_tag = element.find_next_sibling()
+            next_tag = element.find_next_sibling()#日付の下のコメント抽出
             print(next_tag.text)#コメント
     
     except AttributeError:#不明な行を読み込んだ際
