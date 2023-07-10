@@ -1,18 +1,20 @@
 import sqlite3
 
-#関数化したい
-
 dbname = 'thread.db'
-
 conn=sqlite3.connect(dbname)
 c = conn.cursor()
 
-sql = 'insert into threadlab (id, comment) values (?,?)'
 
-namelist = (1, "uma")
-c.execute(sql, namelist)
+def db_input(num,com):
+    
+    sql = 'insert into threadlab (id, comment) values (?,?)'
 
-namelist2 = (2, "uma2")
-c.execute(sql, namelist2)
+    namelist = (num, com)
+    c.execute(sql, namelist)
 
-conn.commit()
+
+    conn.commit()
+    
+    
+db_input(1,"sssss")
+    
