@@ -6,11 +6,6 @@ conn=sqlite3.connect(dbname)
 c = conn.cursor()
 
 
-
-
-
-
-
         
 def db_view():
     select_sql = 'select * from threadlab'

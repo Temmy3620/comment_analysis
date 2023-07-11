@@ -3,6 +3,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
+import db_input
 
 
 def thread_input(load_url):
@@ -16,21 +17,26 @@ def thread_input(load_url):
     
     
     try:
-        for num in range(2998,3002):#コメント読み込む
+        for num in range(1,3002):#コメント読み込む
             element = soup.find(id="comment_" + str(num))    # その中のliタグの文字列を表示
             
             text = element.get_text(strip=True)# テキストを抽出
             extracted_text = text.split('：')[2]
-            print(extracted_text)#日付
-                
+            print(extracted_text[0:13])#日付
+            print(extracted_text[14:22])    
             next_tag = element.find_next_sibling()#日付の下のコメント抽出
             print(next_tag.text)#コメント
+            print("coment input date!!")
+            #DBに入れる
+            db_input.db_input(extracted_text[0:13],extracted_text[14:22],next_tag.text)
+            
+            
     
     except AttributeError:#不明な行を読み込んだ際
         print("None...")
         sys.exit()  # 処理を終了する
     
-    #num +=1
+    
 
 def date_get():
     """
